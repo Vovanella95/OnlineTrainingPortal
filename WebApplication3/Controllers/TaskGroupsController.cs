@@ -92,7 +92,7 @@ namespace WebApplication3.Controllers
             entry.CodeTasks.Add(codeTask);
             db.Entry(entry).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details/"+ id);
         }
 
 

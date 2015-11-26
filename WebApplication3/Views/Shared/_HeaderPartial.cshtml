@@ -11,7 +11,6 @@
         <div class="avatar-holder">
             <div class="avatar-name">
                 @userData.Name <br />
-                <sub>@userData.Surname</sub>
             </div>
             <div class="avatar-img">
                 <img src="@Url.Action("GetUserAvatar", "User")" class="avatar-img-src" />
@@ -58,10 +57,6 @@
         </div>
     }
 
-
-
-
-
 </header>
 
 
@@ -80,6 +75,7 @@
         float: left;
         color: white;
         text-align: right;
+        line-height:50px;
     }
 
     .avatar-img {

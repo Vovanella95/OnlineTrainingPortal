@@ -10,6 +10,7 @@ namespace WebApplication3.Models
     {
         public DbSet<CodeTask> CodeTasks { get; set; }
         public DbSet<UserData> UserDatas { get; set; }
+        public DbSet<TaskGroup> TaskGroups { get; set; }
     }
 
     public class CodeTask
@@ -22,6 +23,14 @@ namespace WebApplication3.Models
         public string UserInputTemplate { get; set;  }
         public int Coast { get; set; }
         public DateTime Datastamp { get; set; }
+    }
+
+    public class TaskGroup
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public List<CodeTask> CodeTasks { get; set; }
     }
 
 }

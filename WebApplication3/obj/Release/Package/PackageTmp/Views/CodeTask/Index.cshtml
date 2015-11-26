@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication3.Models.CodeTask>
+﻿@model IEnumerable<WebApplication3.Models.TaskGroup>
 
 @{
     ViewBag.Title = "Index";
@@ -15,6 +15,6 @@
 <ul>
     @foreach (var item in Model)
     {
-        <li>@Html.ActionLink(item.Title, "Compile/" + item.Id, "Compilation")</li>
+        <li>@Html.ActionLink(item.Name != null ? item.Name : "unnamed", "Edit/" + item.Id, "KodeTask")</li>
     }
 </ul>

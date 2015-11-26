@@ -1,0 +1,11 @@
+﻿@model WebApplication3.Models.TaskGroup
+
+
+
+
+@Html.DisplayNameFor(model => model.Name)
+
+@foreach (var task in Model.CodeTasks)
+{
+    <p>@task.Title</p>
+}

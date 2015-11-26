@@ -168,10 +168,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CodeTaskController.cs" />
     <Compile Include="Controllers\CompilationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TaskGroupsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -247,6 +247,11 @@
     <Content Include="Views\Shared\CurrentUserData.cshtml" />
     <Content Include="Views\User\MyData.cshtml" />
     <Content Include="Views\User\AllUsers.cshtml" />
+    <Content Include="Views\TaskGroups\Create.cshtml" />
+    <Content Include="Views\TaskGroups\Delete.cshtml" />
+    <Content Include="Views\TaskGroups\Details.cshtml" />
+    <Content Include="Views\TaskGroups\Edit.cshtml" />
+    <Content Include="Views\TaskGroups\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -13,13 +13,13 @@ body {
     margin: 0px;
 }
 
-button{
-    padding:0px;
+button {
+    padding: 0px;
     background: none;
     margin: 0px;
-    border:none;
-    float:left;
-    cursor:pointer;
+    border: none;
+    float: left;
+    cursor: pointer;
 }
 
 header {
@@ -65,3 +65,87 @@ header {
     text-align: center;
     color: white;
 }
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+    a:visited {
+        color: white;
+    }
+
+.tile {
+    transition: 0.3s ease-in-out;
+    float: left;
+    background-color: #0094ff;
+    border: solid 1px white;
+    margin: 5px 5px 5px 5px;
+    cursor: pointer;
+    text-align: center;
+    overflow: hidden;
+}
+
+.tile-big-content {
+    transition: 0.3s ease-in-out;
+    width: 250px;
+    height: 150px;
+    background-color: #0094ff;
+    border: solid 1px white;
+    margin-top: 200px;
+    font-size: 18px;
+}
+
+    .tile-big-content small {
+        font-size: 12px;
+    }
+
+.tile-big:hover .tile-big-content {
+    margin-top: 100px;
+}
+
+.tile-box {
+    width: 120px;
+    height: 120px;
+}
+
+.tile-small {
+    margin: 0px 0px 8px 0px;
+    width: 55px;
+    height: 55px;
+}
+
+
+.tile-wide {
+    width: 250px;
+    height: 120px;
+}
+
+.tile-big {
+    width: 250px;
+    height: 250px;
+    background-size: contain;
+}
+
+.tile:hover {
+    background-color: #004bff;
+}
+
+.violet {
+    background-color: #b200ff;
+}
+
+.violet:hover{
+    background-color: #8900c4;
+}
+
+.tile-small-container {
+    margin: 5px 5px;
+    width: 122px;
+    height: 122px;
+    float: left;
+}
+
+    .tile-small-container .tile-small:nth-child(2n) {
+        margin-left:8px;
+    }

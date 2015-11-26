@@ -1,0 +1,25 @@
+﻿@model IEnumerable<WebApplication3.Models.TaskGroup>
+
+@Html.ActionLink("Create New", "Create")
+
+
+
+
+
+
+
+@foreach (var group in Model)
+{
+    <a href="~/TaskGroups/Details/@group.Id">
+        <div class="tile tile-wide violet">
+            @group.Name (заданий - @group.CodeTasks.Count)
+        </div>
+    </a>
+}
+
+
+
+
+
+
+

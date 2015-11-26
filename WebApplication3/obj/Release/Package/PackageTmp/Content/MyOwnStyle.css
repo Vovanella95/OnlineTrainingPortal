@@ -1,0 +1,67 @@
+﻿.info-section {
+    width: 100%;
+    min-height: 700px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+body {
+    background-color: #151515;
+    color: white;
+    margin: 0px;
+}
+
+button{
+    padding:0px;
+    background: none;
+    margin: 0px;
+    border:none;
+    float:left;
+    cursor:pointer;
+}
+
+header {
+    width: 100%;
+    height: 50px;
+}
+
+
+.btn-menu {
+    float: left;
+    height: 100%;
+    background-color: black;
+    line-height: 50px;
+    color: white;
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    .btn-menu:hover {
+        background-color: #141414;
+    }
+
+    .btn-menu a:visited {
+        color: white;
+    }
+
+    .btn-menu a {
+        text-decoration: none;
+    }
+
+.info-inner {
+    margin: auto;
+    width: 1000px;
+    height: 700px;
+    border: solid 1px red;
+    vertical-align: middle;
+}
+
+.info-me {
+    float: left;
+    text-align: center;
+    color: white;
+}

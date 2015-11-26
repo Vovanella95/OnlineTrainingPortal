@@ -1,0 +1,20 @@
+﻿@model IEnumerable<WebApplication3.Models.CodeTask>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@Html.ActionLink(item.Title, "Compile/" + item.Id, "Compilation")</li>
+    }
+</ul>

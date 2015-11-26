@@ -1,0 +1,108 @@
+﻿<header>
+
+
+    @{
+        var userData = User.Identity.IsAuthenticated ? WebApplication3.Controllers.UserController.GetCurrentUserData(User.Identity.Name) : null;
+    }
+
+
+    @if (userData != null)
+    {
+        <div class="avatar-holder">
+            <div class="avatar-name">
+                @userData.Name <br />
+                <sub>@userData.Surname</sub>
+            </div>
+            <div class="avatar-img">
+                <img src="@Url.Action("GetUserAvatar", "User")" class="avatar-img-src" />
+            </div>
+
+            @using (Html.BeginForm("Search", "Home"))
+            {
+                <button type="submit" class="avatar-icon">
+                    <img src="~/Icons/glyphicons-28-search.png" class="avatar-icon-icon" />
+                </button>
+            }
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
+            {
+                <button type="submit" class="avatar-icon">
+                    <img src="~/Icons/glyphicons-389-exit.png" class="avatar-icon-icon" />
+                </button>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="avatar-holder">
+            <div class="avatar-name">
+                Неизвестный <br />
+                <sub>пользователь</sub>
+            </div>
+            <div class="avatar-img">
+                <img src="http://s1.iconbird.com/ico/2013/12/505/w450h4001385925286User.png" class="avatar-img-src" />
+            </div>
+
+            @using (Html.BeginForm("Login", "Account", FormMethod.Get))
+            {
+                <button type="submit" class="avatar-icon">
+                    <img src="~/Icons/glyphicons-387-log-in.png" class="avatar-icon-icon" />
+                </button>
+            }
+
+            @using (Html.BeginForm("Register", "Account", FormMethod.Get))
+            {
+                <button type="submit" class="avatar-icon">
+                    <img src="~/Icons/glyphicons-7-user-add.png" class="avatar-icon-icon" />
+                </button>
+            }
+        </div>
+    }
+
+
+
+
+
+</header>
+
+
+<style>
+    .avatar-holder {
+        float: right;
+        min-width: 260px;
+        height: 50px;
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+
+    .avatar-name {
+        text-align: center center;
+        padding-right: 10px;
+        float: left;
+        color: white;
+        text-align: right;
+    }
+
+    .avatar-img {
+        float: left;
+        width: 50px;
+        height: 50px;
+    }
+
+    .avatar-icon {
+        float: left;
+        width: 50px;
+        height: 50px;
+    }
+
+    .avatar-icon-icon {
+        margin: 10px 10px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .avatar-img-src {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+</style>

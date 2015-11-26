@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@{
+    var userData = WebApplication3.Controllers.UserController.GetCurrentUserData(User.Identity.Name);
+}
+
+
+<h1 style="margin-left:50px;">Main Page</h1>
+
+<a href="~/User/MyData">
+    <div class="tile tile-big" style="background-image:url(@Url.Action("GetUserAvatar", "User"));">
+        <div class="tile-big-content">
+            @userData.Name @userData.Surname
+            <br /><small>@userData.Email</small>
+        </div>
+    </div>
+</a>
+
+
+<a href="~/CodeTask/Index">
+    <div class="tile tile-wide">
+        Администрирование
+    </div>
+</a>
+
+
+<a href="~/User/AllUsers">
+    <div class="tile tile-box">
+        Пользователи
+    </div>
+</a>
+
+<a href="#">
+    <div class="tile tile-box">
+        <img src="~/fonts/cup.png" width="50" height="50" style="position:absolute; margin-left:-25px; margin-top:25px;" />
+        <div style="position:absolute; margin-left:20px; margin-top:10px">
+            <input class="knob" data-width="80" value="@(userData.Level%100)" data-angleOffset="-180" data-readOnly="true" data-displayInput="false" data-thickness=".1" data-skin="tron" data-fgColor="white" />
+        </div>
+        <div style="position:absolute; margin-top:100px; width:120px;">Рейтинги</div>
+    </div>
+</a>
+
+
+<div class="tile tile-box">
+
+</div>
+<div class="tile tile-box">
+
+</div>
+
+<div class="tile tile-box">
+
+</div>
+
+<div class="tile tile-wide">
+
+</div>
+
+
+<div class="tile tile-box">
+
+</div>
+
+
+
+<style>
+    .tile {
+        transition: 0.1s ease-in-out;
+        float: left;
+        background-color: #0094ff;
+        border: solid 1px white;
+        margin: 5px 5px 5px 5px;
+        cursor: pointer;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .tile-big-content {
+        transition: 0.3s ease-in-out;
+        width: 250px;
+        height: 150px;
+        background-color: #0094ff;
+        border: solid 1px white;
+        margin-top: 200px;
+        font-size: 18px;
+    }
+
+        .tile-big-content small {
+            font-size: 12px;
+        }
+
+    .tile-big:hover .tile-big-content {
+        margin-top: 100px;
+    }
+
+    .tile-box {
+        width: 120px;
+        height: 120px;
+    }
+
+    .tile-wide {
+        width: 250px;
+        height: 120px;
+    }
+
+    .tile-big {
+        width: 250px;
+        height: 250px;
+        background-size: contain;
+    }
+
+    .tile:hover {
+        background-color: #004bff;
+    }
+
+    a {
+        color: white;
+    }
+
+        a:visited {
+            color: white;
+        }
+</style>

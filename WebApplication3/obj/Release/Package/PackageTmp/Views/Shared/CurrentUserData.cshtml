@@ -1,0 +1,24 @@
+﻿@model Tuple<string, string>
+
+
+@{
+    var userData = WebApplication3.Controllers.UserController.GetCurrentUserData(User.Identity.Name);
+}
+
+
+
+@if (Convert.ToInt32(Model.Item1) >= 100)
+{
+    <div class="info-me" style="width: @(Model.Item1 + "px"); height: @(Model.Item2 + "px")">
+        <img src="http://cs629216.vk.me/v629216639/1d595/w6IEu2sY7jE.jpg" width="@((Convert.ToInt32(Model.Item1) - 30).ToString() + "px")" height="@((Convert.ToInt32(Model.Item1) - 30).ToString() + "px")" style="border-radius:50%; position:absolute; margin: 15px 15px;" />
+        <input class="knob" data-width="@(Convert.ToInt32(Model.Item1))" data-displayInput=false data-readonly="true" value="@userData.Level">
+        <label>@userData.Name @userData.Surname</label>
+    </div>
+}
+else
+{
+    <div class="info-me" style="width: @(Model.Item1 + "px"); height: @(Model.Item2 + "px")">
+        <img src="http://cs629216.vk.me/v629216639/1d595/w6IEu2sY7jE.jpg" width="@((Convert.ToInt32(Model.Item1) - 10).ToString() + "px")" height="@((Convert.ToInt32(Model.Item1) - 10).ToString() + "px")" style="border-radius:50%; position:absolute; margin: 5px 5px;" />
+        <input class="knob" data-width="@(Convert.ToInt32(Model.Item1))" data-displayInput=false data-readonly="true" value="@userData.Level">
+    </div>
+}

@@ -1,0 +1,35 @@
+﻿@model WebApplication3.Models.CompileItem
+
+@{
+    ViewBag.Title = "Compile";
+    var task = WebApplication3.Controllers.CompilationController.GetCodeTaskById(Model.TaskId);
+}
+
+<h2>Compile</h2>
+
+<p>
+    Задание: @task.Title
+</p>
+<p>
+    Описание: @task.Text
+</p>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <h2>Input your code here</h2>
+    @Html.TextAreaFor(w => w.UserInput)
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+        @Html.HiddenFor(w => w.TaskId, Model.TaskId)
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

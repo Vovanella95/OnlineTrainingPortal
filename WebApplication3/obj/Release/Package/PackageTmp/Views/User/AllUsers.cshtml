@@ -1,0 +1,11 @@
+﻿@model IEnumerable<WebApplication3.Models.UserData>
+
+@foreach (var user in Model)
+{
+    <p>
+        @if (user.Avatar != null)
+        {
+            <img src="data:image;base64,@System.Convert.ToBase64String(user.Avatar)" width="150" height="70" />
+        }@user.Email
+    </p>
+}

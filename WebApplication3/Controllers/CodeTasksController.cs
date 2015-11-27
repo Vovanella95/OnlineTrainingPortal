@@ -10,133 +10,107 @@ using WebApplication3.Models;
 
 namespace WebApplication3.Controllers
 {
-    public class TaskGroupsController : Controller
+    public class CodeTasksController : Controller
     {
         private DefaultConnection db = new DefaultConnection();
 
-        // GET: TaskGroups
+        // GET: CodeTasks
         public ActionResult Index()
         {
-            return View(db.TaskGroups.Include(w => w.CodeTasks).ToList());
+            return View(db.CodeTasks.ToList());
         }
 
-        // GET: TaskGroups/Details/5
+        // GET: CodeTasks/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaskGroup taskGroup = db.TaskGroups.Include(w=>w.CodeTasks).First(w=>w.Id == id);
-            if (taskGroup == null)
+            CodeTask codeTask = db.CodeTasks.Find(id);
+            if (codeTask == null)
             {
                 return HttpNotFound();
             }
-            return View(taskGroup);
+            return View(codeTask);
         }
 
-        // GET: TaskGroups/Create
+        // GET: CodeTasks/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TaskGroups/Create
+        // POST: CodeTasks/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description")] TaskGroup taskGroup)
+        public ActionResult Create([Bind(Include = "Id,Title,Text,Image,TestFunction,UserInputTemplate,Coast,Datastamp")] CodeTask codeTask)
         {
             if (ModelState.IsValid)
             {
-                db.TaskGroups.Add(taskGroup);
+                db.CodeTasks.Add(codeTask);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(taskGroup);
+            return View(codeTask);
         }
 
-        // GET: TaskGroups/Edit/5
+        // GET: CodeTasks/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaskGroup taskGroup = db.TaskGroups.Find(id);
-            if (taskGroup == null)
+            CodeTask codeTask = db.CodeTasks.Find(id);
+            if (codeTask == null)
             {
                 return HttpNotFound();
             }
-            return View(taskGroup);
+            return View(codeTask);
         }
 
-        [HttpGet]
-        public ActionResult AddTaskToGroup(int id)
-        {
-            var codeTask = new CodeTask()
-            {
-                Title = "New Code Task",
-                Datastamp = DateTime.UtcNow
-            };
-
-            db.CodeTasks.Add(codeTask);
-
-            var entry = db.TaskGroups.Include(w => w.CodeTasks).First(w => w.Id == id);
-            if (entry.CodeTasks == null)
-            {
-                entry.CodeTasks = new List<CodeTask>();
-            }
-            entry.CodeTasks.Add(codeTask);
-            db.Entry(entry).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Edit/" + codeTask.Id, "CodeTasks");
-        }
-
-
-
-
-
-        // POST: TaskGroups/Edit/5
+        // POST: CodeTasks/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description")] TaskGroup taskGroup)
+        public ActionResult Edit([Bind(Include = "Id,Title,Text,Image,TestFunction,UserInputTemplate,Coast,Datastamp")] CodeTask codeTask)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(taskGroup).State = EntityState.Modified;
+                db.Entry(codeTask).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(taskGroup);
+            return View(codeTask);
         }
 
-        // GET: TaskGroups/Delete/5
+        // GET: CodeTasks/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaskGroup taskGroup = db.TaskGroups.Find(id);
-            if (taskGroup == null)
+            CodeTask codeTask = db.CodeTasks.Find(id);
+            if (codeTask == null)
             {
                 return HttpNotFound();
             }
-            return View(taskGroup);
+            return View(codeTask);
         }
 
-        // POST: TaskGroups/Delete/5
+        // POST: CodeTasks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TaskGroup taskGroup = db.TaskGroups.Find(id);
-            db.TaskGroups.Remove(taskGroup);
+            CodeTask codeTask = db.CodeTasks.Find(id);
+            db.CodeTasks.Remove(codeTask);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

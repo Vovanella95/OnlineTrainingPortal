@@ -1,0 +1,88 @@
+﻿@model WebApplication3.Models.CodeTask
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>CodeTask</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Text)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Text)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Image)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TestFunction)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TestFunction)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.UserInputTemplate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UserInputTemplate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Coast)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Coast)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Datastamp)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Datastamp)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -197,11 +197,22 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Properties\PublishProfiles\WebApplication38038.pubxml" />
+    <Content Include="Icons\bell-8x копия.png" />
+    <Content Include="Icons\bullhorn-8x копия копия.PNG" />
+    <Content Include="Icons\circle-x-8x копия.png" />
+    <Content Include="Icons\cog-8x копия.png" />
+    <Content Include="Icons\envelope-closed-8x копия.png" />
     <Content Include="Icons\glyphicons-28-search.png" />
     <Content Include="Icons\glyphicons-387-log-in.png" />
     <Content Include="Icons\glyphicons-389-exit.png" />
     <Content Include="Icons\glyphicons-7-user-add.png" />
+    <Content Include="Icons\magnifying-glass-8x копия.png" />
+    <Content Include="Icons\people-8x.png" />
+    <Content Include="Icons\plus-8x копия.png" />
+    <Content Include="Icons\star-8x копия.png" />
+    <Content Include="Icons\trash-8x копия.png" />
     <Content Include="Icons\User-icon.png" />
+    <Content Include="Icons\wrench-8x копия.png" />
     <Content Include="Scripts\jquery.knob.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

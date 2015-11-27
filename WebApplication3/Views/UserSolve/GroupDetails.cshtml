@@ -1,0 +1,36 @@
+﻿@model WebApplication3.Models.TaskGroup
+
+
+@{
+    var user = WebApplication3.Controllers.UserSolveController.GetCurrentUser(User.Identity.Name).CompletedTasks.Select(w => w.Id);
+}
+
+<h3>Новые</h3>
+@foreach (var task in Model.CodeTasks.Where(w => !user.Contains(w.Id)))
+{
+    <a href="~/Compilation/Compile/@task.Id" class="tile tile-wide">
+        <div class="tile-wide-inner">
+            <div class="tile-wide-inner-part">
+                @task.Title
+            </div>
+            <div class="tile-wide-inner-part">
+                @task.Coast
+            </div>
+        </div>
+    </a>
+}
+
+<h3>Завершенные</h3>
+@foreach (var task in Model.CodeTasks.Where(w => user.Contains(w.Id)))
+{
+    <a href="#" class="tile tile-wide">
+        <div class="tile-wide-inner">
+            <div class="tile-wide-inner-part">
+                @task.Title
+            </div>
+            <div class="tile-wide-inner-part">
+                @task.Coast
+            </div>
+        </div>
+    </a>
+}

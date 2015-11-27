@@ -1,0 +1,16 @@
+﻿@model IEnumerable<WebApplication3.Models.TaskGroup>
+
+
+@foreach(var group in Model)
+{
+    <a href="~/UserSolve/GroupDetails/@group.Id" class="tile tile-wide">
+        <div class="tile-wide-inner">
+            <div class="tile-wide-inner-part">
+                @group.Name
+            </div>
+            <div class="tile-wide-inner-part">
+                Перейти
+            </div>
+        </div>
+    </a>
+}

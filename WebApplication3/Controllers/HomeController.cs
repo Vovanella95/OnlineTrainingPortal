@@ -32,5 +32,12 @@ namespace WebApplication3.Controllers
 
             return View();
         }
+
+        public ActionResult RemoveTable()
+        {
+            context.Database.Delete();
+            context.Database.Create();
+            return View("Index");
+        }
     }
 }

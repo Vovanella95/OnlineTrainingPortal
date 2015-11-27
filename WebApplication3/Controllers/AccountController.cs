@@ -151,7 +151,6 @@ namespace WebApplication3.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             DefaultConnection context = new DefaultConnection();
-
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
@@ -177,16 +176,7 @@ namespace WebApplication3.Controllers
                     });
                     context.SaveChanges();
 
-                    var roleManager = new RoleManager<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
-
-
-                    if (!roleManager.RoleExists("Admin"))
-                    {
-                        var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                        role.Name = "Admin";
-                        roleManager.Create(role);
-                    }
-                    UserManager.AddToRole(user.Id, "Admin");
+                    
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

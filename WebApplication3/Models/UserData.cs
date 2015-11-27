@@ -23,7 +23,7 @@ namespace WebApplication3.Models
 
         public byte[] Avatar { get; set; }
 
-        public List<int> CompletedTasks { get; set; }
+        public List<CompletedTask> CompletedTasks { get; set; }
 
         public List<UserData> Friends { get; set; }
 

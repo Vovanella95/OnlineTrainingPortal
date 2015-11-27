@@ -2,6 +2,7 @@
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -43,6 +44,9 @@ namespace ConsoleApplication1
         [HttpGet]
         public ActionResult Compile(int id)
         {
+            var ins = context.UserDatas.Include(w => w.CompletedTasks).First(w => w.Email == User.Identity.Name).CompletedTasks.ToList();
+            if (ins.Any(w=>w.TaskId == id)) return RedirectToAction("Index", "Home");
+
             return View(new CompileItem() { TaskId = id });
         }
 
@@ -60,21 +64,37 @@ namespace ConsoleApplication1
             parameters.OutputAssembly = exeName;
             CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
 
-            Process pr = new Process();
-            pr.StartInfo.RedirectStandardOutput = true;
-            pr.StartInfo.FileName = exeName;
-            pr.StartInfo.UseShellExecute = false;
-            pr.Start();
-            var t = pr.StandardOutput.ReadToEnd();
-            pr.WaitForExit();
-
-            System.IO.File.Delete(exeName);
-
-            if(t == "True")
+            try
             {
-                return View("Index", new CompileResult() { Result = "Success!!! " + t });
+                Process pr = new Process();
+                pr.StartInfo.RedirectStandardOutput = true;
+                pr.StartInfo.FileName = exeName;
+                pr.StartInfo.UseShellExecute = false;
+                pr.Start();
+                var t = pr.StandardOutput.ReadToEnd();
+                pr.WaitForExit();
+
+                System.IO.File.Delete(exeName);
+
+                if (t == "True")
+                {
+                    var entry = context.UserDatas.Include(w=>w.CompletedTasks).First(w => w.Email == User.Identity.Name);
+                    var ctask = new CompletedTask() { TaskId = src.TaskId };
+                    context.CompletedTasks.Add(ctask);
+                    entry.CompletedTasks.Add(ctask);
+                    entry.Level += task.Coast;
+
+                    context.Entry(entry).State = EntityState.Modified;
+                    context.SaveChanges();
+                    return View("Index", new CompileResult() { Result = "Задание решено правильно!" });
+                }
+                return View("Index", new CompileResult() { Result = "Программа скомпилировалась, но ваш алгоритм работает неверно :(Ищите ошибку" });
             }
-            return View("Index", new CompileResult() { Result = t });
+            catch (Exception ex)
+            {
+                return View("Index", new CompileResult() { Result = "Ошибка компиляции" });
+            }
+
         }
 
         public static CodeTask GetCodeTaskById(int id)

@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebApplication3.Models;
+using System.Web.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace WebApplication3.Controllers
 {
@@ -72,7 +74,6 @@ namespace WebApplication3.Controllers
             {
                 return View(model);
             }
-
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
@@ -176,7 +177,16 @@ namespace WebApplication3.Controllers
                     });
                     context.SaveChanges();
 
+                    var roleManager = new RoleManager<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
 
+
+                    if (!roleManager.RoleExists("Admin"))
+                    {
+                        var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                        role.Name = "Admin";
+                        roleManager.Create(role);
+                    }
+                    UserManager.AddToRole(user.Id, "Admin");
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -402,7 +412,7 @@ namespace WebApplication3.Controllers
         //
         // POST: /Account/LogOff
         [HttpPost]
-//        [ValidateAntiForgeryToken]
+        //        [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

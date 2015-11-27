@@ -4,10 +4,10 @@
 
 <div class="tile-small-container">
     <a href="~/TaskGroups/Create" class="tile tile-small violet" style="line-height:50px; font-size:30px">
-        +
+        <img src="~/Icons/plus-8x копия.png" class="tile-small-icon" />
     </a>
     <a href="~/TaskGroups/Create" class="tile tile-small violet" style="line-height:50px; font-size:30px">
-        +
+        <img src="~/Icons/magnifying-glass-8x копия.png" class="tile-small-icon" />
     </a>
     <a href="~/TaskGroups/Create" class="tile tile-small violet" style="line-height:50px; font-size:30px">
         +
@@ -25,7 +25,14 @@
 {
     <a href="~/TaskGroups/Details/@group.Id">
         <div class="tile tile-wide violet">
-            @group.Name (заданий - @group.CodeTasks.Count)
+            <div class="tile-wide-inner">
+                <div class="tile-wide-inner-part" style="vertical-align:middle;display: table-cell; padding:3px;">
+                    @group.Name (заданий - @group.CodeTasks.Count)
+                </div>
+                <div class="tile-wide-inner-part" style="text-align:justify; padding:3px;">
+                    @group.Description
+                </div>
+            </div>
         </div>
     </a>
 }

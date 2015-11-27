@@ -1,15 +1,40 @@
 ﻿@model WebApplication3.Models.TaskGroup
 
 
-
-
-@Html.DisplayNameFor(model => model.Name)
-
-@foreach (var task in Model.CodeTasks)
-{
-    <p>@task.Title</p>
-}
-
 <a href="~/TaskGroups/AddTaskToGroup/@Model.Id">
     Add
 </a>
+
+<br /><br />
+
+@foreach (var task in Model.CodeTasks)
+{
+
+    <a href="~/CodeTasks/Edit/@task.Id" class="tile tile-wide yellow">
+        <div class="tile-wide-inner">
+            <div class="tile-wide-inner-part" style="vertical-align:middle;display: table-cell; padding:3px;">
+                @task.Title
+            </div>
+            <div class="tile-wide-inner-part" style="text-align:left">
+                <ul>
+                    <li>
+                        Стоимость: @task.Coast
+                    </li>
+                    <li>
+                        Опубликован: @task.Datastamp
+                    </li>
+                    <li>
+                        Стоимость: @task.Text
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </a>
+    
+}
+
+
+
+
+
+
